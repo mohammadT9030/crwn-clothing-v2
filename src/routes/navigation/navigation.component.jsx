@@ -1,13 +1,17 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 
 import "./navigation.styles.scss";
 import { useUser } from "../../contexts.jsx/user.context";
+import { CartIcon } from "../../components/cart-icon/cart-icon.component";
+import { CartDropdown } from "../../components/cart-dropdown/cart-dropdown.component";
+import { useCart } from "../../contexts.jsx/cart.context";
 
 const Navigation = () => {
   const { currUser, setCurrUser } = useUser();
+  const { cartIsOpen } = useCart();
 
   return (
     <Fragment>
@@ -33,7 +37,9 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
+        {cartIsOpen && <CartDropdown />}
       </div>
       <Outlet />
     </Fragment>
