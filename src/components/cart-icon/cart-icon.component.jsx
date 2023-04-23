@@ -1,7 +1,7 @@
 import { useCart } from "../../contexts.jsx/cart.context";
 
 export const CartIcon = () => {
-  const { setCartIsOpen } = useCart();
+  const { setCartIsOpen, total } = useCart();
   return (
     <div
       onClick={() => {
@@ -10,7 +10,7 @@ export const CartIcon = () => {
       style={{ cursor: "pointer" }}
     >
       <span>🛒</span>
-      <span>0</span>
+      <span>{total}</span>
     </div>
   );
 };
