@@ -15,7 +15,7 @@ export const CartDropdown = () => {
       <h3>DROPDOWN</h3>
       <ul>
         {cartItems.map((item) => (
-          <li>
+          <li key={item.name}>
             {item.name}[{item.price}$]({item.quantity}x)
           </li>
         ))}

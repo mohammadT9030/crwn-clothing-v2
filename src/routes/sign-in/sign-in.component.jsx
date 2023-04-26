@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { signIn, signUp } from "../../utils/auth/myAuth";
-import { useUser } from "../../contexts.jsx/user.context";
+import { setCurrUser } from "../../store/user/user.actions";
+import { useDispatch } from "react-redux";
 
 const SignIn = () => {
   const inputsRef = useRef({
@@ -8,7 +9,7 @@ const SignIn = () => {
     signUp: { displayName: null, email: null, password: null },
   });
 
-  const { setCurrUser } = useUser();
+  const dispatch = useDispatch();
 
   const logUser = (e) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ const SignIn = () => {
         inputsRef.current.signIn.password.value
       );
       console.log(user);
-      setCurrUser(user);
+      dispatch(setCurrUser(user));
     } catch (err) {
       if (err.message === "Wrong email or password") {
         alert("Wrong 'email' or 'password'!");
