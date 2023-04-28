@@ -4,14 +4,17 @@ import { Outlet, Link } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 
 import "./navigation.styles.scss";
-import { useUser } from "../../contexts.jsx/user.context";
 import { CartIcon } from "../../components/cart-icon/cart-icon.component";
 import { CartDropdown } from "../../components/cart-dropdown/cart-dropdown.component";
-import { useCart } from "../../contexts.jsx/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrUser } from "../../store/user/user.actions";
+import { currentUserSelector } from "../../store/user/user.selector";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 
 const Navigation = () => {
-  const { currUser, setCurrUser } = useUser();
-  const { cartIsOpen } = useCart();
+  const currUser = useSelector(currentUserSelector);
+  const cartIsOpen = useSelector(selectIsCartOpen);
+  const dispatch = useDispatch();
 
   return (
     <Fragment>
@@ -27,7 +30,7 @@ const Navigation = () => {
             <span
               className="nav-link"
               onClick={() => {
-                setCurrUser(null);
+                dispatch(setCurrUser(null));
               }}
             >
               Sign Out

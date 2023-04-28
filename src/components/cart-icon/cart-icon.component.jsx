@@ -1,16 +1,20 @@
-import { useCart } from "../../contexts.jsx/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTotalItems } from "../../store/cart/cart.selector";
+import { toggleCartOpen } from "../../store/cart/cart.actions";
 
 export const CartIcon = () => {
-  const { setCartIsOpen, total } = useCart();
+  const totalItems = useSelector(selectTotalItems);
+  const dispatch = useDispatch();
+
   return (
     <div
       onClick={() => {
-        setCartIsOpen((s) => !s);
+        dispatch(toggleCartOpen());
       }}
       style={{ cursor: "pointer" }}
     >
       <span>🛒</span>
-      <span>{total}</span>
+      <span>{totalItems}</span>
     </div>
   );
 };

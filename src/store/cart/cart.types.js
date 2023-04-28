@@ -1,0 +1,4 @@
+export const CART_ACTION_TYPES = {
+  ADD_ITEM_TO_CART: "cart/ADD_ITEM_TO_CART",
+  TOGGLE_CART_OPEN: "cart/TOGGLE_CART_OPEN",
+};
